@@ -21,3 +21,20 @@ print(len(s.values[s.values < 0]))
 сортировать список кортежей, при этом кортежи сравниваются по первому
 элементу, а если они равны — то по второму.
 b) параметр key в сортировке.
+
+n = int(input())
+radii = set(map(int, input().split()))
+
+# Определяем количество снеговиков, которое можно слепить
+k = len(radii) // 3
+
+# Составляем кортежи снеговиков
+snowmen = []
+for i in range(k):
+    big, middle, small = sorted((radii.pop() for _ in range(3)), reverse=True)
+    snowmen.append((big, middle, small))
+
+# Выводим результат
+print(k)
+for snowman in snowmen:
+    print(*snowman)
