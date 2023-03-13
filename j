@@ -38,3 +38,35 @@ for i in range(k):
 print(k)
 for snowman in snowmen:
     print(*snowman)
+
+n = int(input())
+radii = list(map(int, input().split()))
+
+# создаем словарь с количеством комов каждого радиуса
+count = {}
+for r in radii:
+    if r not in count:
+        count[r] = 1
+    else:
+        count[r] += 1
+
+# сортируем радиусы в порядке возрастания
+sorted_radii = sorted(count.keys())
+
+# перебираем все комбинации радиусов
+max_snowmen = 0
+best_snowmen = []
+for i in range(len(sorted_radii)):
+    for j in range(i+1, len(sorted_radii)):
+        for k in range(j+1, len(sorted_radii)):
+            r1, r2, r3 = sorted_radii[i], sorted_radii[j], sorted_radii[k]
+            if r1 != r2 and r2 != r3 and count[r1] > 0 and count[r2] > 0 and count[r3] > 0:
+                count[r1] -= 1
+                count[r2] -= 1
+                count[r3] -= 1
+                max_snowmen += 1
+                best_snowmen.append((r3, r2, r1))
+
+print(max_snowmen)
+for s in best_snowmen:
+    print(s[0], s[1], s[2])
