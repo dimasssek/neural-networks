@@ -1,0 +1,55 @@
+CREATE TABLE tourist
+(
+    touristId SERIAL PRIMARY KEY,
+    firstName CHARACTER VARYING(30),
+    lastName CHARACTER VARYING(30),
+    patronymic CHARACTER VARYING(30)
+);
+
+INSERT INTO tourist (firstName, lastName, patronymic)
+VALUES 
+('Daniil', 'Krasnoshein', 'Alexandrovich'),
+('Lena', 'Golovach', 'Daubidaubi'), 
+('Konstantin', 'Pravin', 'Steakovich'),
+('Stray', 'Osughdayu', 'Deda'),
+('Ilya', 'Boyko', 'Zblovich');
+		
+SELECT * FROM tourist
+
+CREATE TABLE infoTourist
+(
+	infoTouristId Serial REFERENCES tourist (touristId),
+	passportSeries CHARACTER VARYING(1),
+    city CHARACTER VARYING(30),
+    country CHARACTER VARYING(30),
+	numberPhone CHARACTER VARYING(1),
+    indexPost INTEGER 
+);
+
+INSERT INTO infoTourist(passportSeries, city, country, numberPhone, indexPost)
+VALUES
+	('1', 'Krasnoyarsk', 'Kanava', '1', 1),
+	('2', 'Kalograd', 'Kalliya', '2', 2),
+	('3', 'Madrid', 'Spain', '3', 3),
+	('4', 'Belgorod', 'Russia', '4', 4),
+	('5', 'Krasnoyarsk', 'Kanava', '5', 5);
+
+SELECT * FROM infoTourist
+
+CREATE TABLE tour
+(
+	tourId SERIAL PRIMARY KEY,
+	nameTour CHARACTER VARYING(30),
+	priceTour MONEY,
+	infoTour TEXT
+);
+
+INSERT INTO tour(nameTour, priceTour, infoTour)
+VALUES
+	('NORM', 30000, 'Info about NORM'),
+	('HAROSH', 40000, 'Info about HAROSH'),
+	('NEPLOH', 50000, 'Info about NEPLOH'),
+	('MEGA HOROSH', 60000, 'Info about MEGA HOROSH'),
+	('DRISTANUL', 70000, 'Info about DRISTANUL');
+	
+SELECT * FROM tour
