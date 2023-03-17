@@ -70,3 +70,88 @@ for i in range(len(sorted_radii)):
 print(max_snowmen)
 for s in best_snowmen:
     print(s[0], s[1], s[2])
+
+
+
+import math
+
+
+def fibonacci(n):
+    """
+    Возвращает n-ное число Фибоначчи.
+
+    :param n: номер числа Фибоначчи
+    :return: n-е число Фибоначчи
+    """
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+
+def find_n(L0, l):
+    """
+    Находит минимальное число N, при котором F_N >= L0 / l.
+
+    :param L0: начальная длина интервала
+    :param l: допустимая длина конечного интервала
+    :return: минимальное число N
+    """
+    n = 1
+    while fibonacci(n) < L0 / l:
+        n += 1
+    return n
+
+
+def func(x):
+    """
+    Функция для оптимизации (в данном случае квадратичная функция).
+
+    :param x: значение аргумента
+    :return: значение функции в точке x
+    """
+    return x ** 2
+
+
+def fibonacci_search(a0, b0, l, eps):
+    """
+    Поиск минимума функции методом Фибоначчи.
+
+    :param a0: начальная граница интервала
+    :param b0: конечная граница интервала
+    :param l: допустимая длина конечного интервала
+    :param eps: константа различимости
+    :return: приближенное решение (середина последнего интервала)
+    """
+    L0 = b0 - a0  # начальная длина интервала
+    N = find_n(L0, l)  # количество вычислений функции
+
+    k = 0  # итерационный счетчик
+    y0 = a0 + (fibonacci(N - 2) * L0) / fibonacci(N)  # вычисление y0
+    z0 = a0 + (fibonacci(N - 1) * L0) / fibonacci(N)  # вычисление z0
+
+    while k < N - 1:
+        fy_k = func(y0)  # значение функции в точке y_k
+        fz_k = func(z0)  # значение функции в точке z_k
+
+        if fy_k <= fz_k:
+            b0 = z0
+            z0 = y0
+            L0 = b0 - a0
+            y0 = a0 + (fibonacci(N - k - 3) * L0) / fibonacci(N - k - 1)
+        else:
+            a0 = y0
+            y0 = z0
+            L0 = b0 - a0
+            z0 = a0 + (fibonacci(N - k - 2) * L0) / fibonacci(N - k - 1)
+
+        k += 1
+
+    if func(y0) <= func(z0):
+        a_final, b_final = a0, z0
+    else:
+        a_final, b_final = y0, b0
+
+    return (a_final + b
