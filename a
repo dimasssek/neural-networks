@@ -56,3 +56,32 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+
+def read_data():
+    parties = []
+    votes = []
+
+    with open('input.txt', 'r') as input_file:
+        lines = input_file.readlines()
+
+    reading_parties = False
+    reading_votes = False
+    for line in lines:
+        line = line.strip()
+        if line == 'PARTIES':
+            reading_parties = True
+            continue
+        elif line == 'VOTES':
+            reading_votes = True
+            reading_parties = False
+            continue
+        
+        if reading_parties:
+            parties = line.split()
+        elif reading_votes:
+            votes.extend(line.split())
+
+    return parties, votes
+
