@@ -13,3 +13,46 @@
 # 3
 # Дана строка. Определить, какое наименьшее число символов необходимо
 # записать дописать к ней справа так, чтобы она стала палиндромом
+
+def read_data():
+    parties = []
+    votes = []
+    
+    while True:
+        line = input().strip()
+        if line == 'PARTIES':
+            continue
+        elif line == 'VOTES':
+            break
+        elif not parties:
+            parties = line.split()
+        else:
+            votes.extend(line.split())
+
+    return parties, votes
+
+def calculate_percentages(parties, votes):
+    vote_count = len(votes)
+    party_votes = {party: 0 for party in parties}
+
+    for vote in votes:
+        party_votes[vote] += 1
+
+    party_percentages = {party: (votes / vote_count) * 100 for party, votes in party_votes.items()}
+    return party_percentages
+
+def filter_parties_by_threshold(party_percentages, threshold=7):
+    eligible_parties = [party for party, percentage in party_percentages.items() if percentage >= threshold]
+    return eligible_parties
+
+def main():
+    parties, votes = read_data()
+    party_percentages = calculate_percentages(parties, votes)
+    eligible_parties = filter_parties_by_threshold(party_percentages)
+
+    with open('output.txt', 'w') as output_file:
+        for party in eligible_parties:
+            output_file.write(party + '\n')
+
+if __name__ == '__main__':
+    main()
