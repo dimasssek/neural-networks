@@ -149,3 +149,5 @@ print("Умножение на скаляр:", v1 * 2)
 print("Деление на скаляр:", v1 / 2)
 print("Векторное произведение:", v1.cross(v2))
 print("Длина вектора 1:", v1.length())
+
+https://github.com/ArtemOnigiri/SimpleNN/tree/master/src
