@@ -85,3 +85,67 @@ def read_data():
 
     return parties, votes
 
+
+
+
+
+
+
+
+
+class Vector3D:
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+
+    def __str__(self):
+        """Возвращает строковое представление вектора."""
+        return f"({self.x}, {self.y}, {self.z})"
+
+    def __add__(self, other):
+        """Складывает два вектора и возвращает новый вектор."""
+        return Vector3D(self.x + other.x, self.y + other.y, self.z + other.z)
+
+    def __sub__(self, other):
+        """Вычитает один вектор из другого и возвращает новый вектор."""
+        return Vector3D(self.x - other.x, self.y - other.y, self.z - other.z)
+
+    def dot(self, other):
+        """Вычисляет скалярное произведение двух векторов."""
+        return self.x * other.x + self.y * other.y + self.z * other.z
+
+    def __mul__(self, scalar):
+        """Умножает вектор на скаляр и возвращает новый вектор."""
+        return Vector3D(self.x * scalar, self.y * scalar, self.z * scalar)
+
+    def __truediv__(self, scalar):
+        """Делит вектор на скаляр и возвращает новый вектор."""
+        return Vector3D(self.x / scalar, self.y / scalar, self.z / scalar)
+
+    def cross(self, other):
+        """Вычисляет векторное произведение двух векторов и возвращает новый вектор."""
+        return Vector3D(
+            self.y * other.z - self.z * other.y,
+            self.z * other.x - self.x * other.z,
+            self.x * other.y - self.y * other.x
+        )
+
+    def length(self):
+        """Вычисляет длину вектора."""
+        return (self.x**2 + self.y**2 + self.z**2)**0.5
+
+
+# Пример использования
+v1 = Vector3D(1, 2, 3)
+v2 = Vector3D(4, 5, 6)
+
+print("Вектор 1:", v1)
+print("Вектор 2:", v2)
+print("Сумма:", v1 + v2)
+print("Разность:", v1 - v2)
+print("Скалярное произведение:", v1.dot(v2))
+print("Умножение на скаляр:", v1 * 2)
+print("Деление на скаляр:", v1 / 2)
+print("Векторное произведение:", v1.cross(v2))
+print("Длина вектора 1:", v1.length())
