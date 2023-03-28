@@ -151,3 +151,27 @@ print("Векторное произведение:", v1.cross(v2))
 print("Длина вектора 1:", v1.length())
 
 https://github.com/ArtemOnigiri/SimpleNN/tree/master/src
+
+import sqlite3
+
+db = sqlite3.connect("space.db")
+cursor = db.cursor()
+query1 = '''CREATE TABLE Star(
+    starId INTEGER PRIMARY KEY AUTOINCREMENT,
+    nameOfStar STRING NOT NULL,
+    temperature INTEGER,
+    weight INTEGER);'''
+
+query2 = '''CREATE TABLE Star(
+    starId INTEGER PRIMARY KEY AUTOINCREMENT,
+    nameOfStar STRING NOT NULL,
+    temperature INTEGER,
+    weight INTEGER);'''
+
+query3 = '''CREATE TABLE BlackHole(
+    blackHoleId INTEGER PRIMARY KEY AUTOINCREMENT,
+    FOREIGN KEY (supernovaId) REFERENCES Star(supernovaId),
+    FOREIGN KEY (starId) REFERENCES Star(starId),
+    nameOfBlackHole STRING NOT NULL,
+    density INTEGER);'''
+db.commit(query1)
