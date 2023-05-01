@@ -1,0 +1,21 @@
+<?xml version = "1.0"?>
+<space>
+    <stars>
+        <star name="Sun" weight = "7"/>
+        <star name="Betelgeuse" weight = "11"/>
+        <star name="Sirius" weight = "2"/>
+        <star name="Deneb" weight = "19"/>
+    </stars>
+    <supernovas>
+        <supernova name = "SN 2024" age = "0"/>
+        <supernova name = "SN 1604" age = "5"/>
+        <supernova name = "SN 1987A" age = "8"/>
+        <supernova name = "SN 1993J" age = "1"/>
+    </supernovas>
+    <blackholes>
+        <blackhole name="TCI" density = "12050" star_id = "2" supernova_id = "3"/>
+        <blackhole name="NIX" density = "6063" star_id = "1" supernova_id = "1"/>
+        <blackhole name="IC 1101" density = "2560" star_id = "3" supernova_id = "4"/>
+        <blackhole name="SDDS" density = "5163" star_id = "4" supernova_id = "2"/>
+    </blackholes>
+</space>
