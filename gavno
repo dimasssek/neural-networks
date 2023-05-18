@@ -1,0 +1,27 @@
+with open('1.osm', 'r', encoding='utf-8') as f:
+    dct = xmltodict.parse(f.read())
+
+k = 0
+kph = 0
+benchs = {}
+for node in dct['osm']['node']:
+    if 'tag' in node:
+        tags = node['tag']
+        if isinstance(tags, list):
+            flag = False
+            flag2 = False
+            for tag in tags:
+                if tag["@k"] == True:
+                  benchs.put(str(tag["@k"], 0))
+                if tag['@v'] == "pharmacy":
+                    flag = True
+                if tag['@k'] == 'bench':
+                    k+=1
+                    benchs[tag['@k']]+=1
+                    if flag == True:
+                      kph+=1
+                    flag2 = True
+                    
+                    
+
+print(k, kph, benchs)
