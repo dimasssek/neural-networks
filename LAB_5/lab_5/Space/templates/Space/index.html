@@ -1,0 +1,52 @@
+{% extends 'Space/base.html' %}
+
+{% block title %}
+Космос - Главная страница
+{% endblock %}
+
+
+{% block content %}
+    <div style="width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center">
+        <span style="font-size: 25px; background-color: #F3F5F6; padding: 0 10px;">
+            Планеты
+        </span>
+    </div>
+    <div class="container">
+        {% for i in planets %}
+            <div class="alert alert-secondary shadow-lg  mt-4">
+                <h3> {{i.name}}</h3>
+                <p> Количество спутников: {{i.number_of_satellites}}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <div style="width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center">
+        <span style="font-size: 25px; background-color: #F3F5F6; padding: 0 10px;">
+            Астронавты
+        </span>
+    </div>
+    <div class="container">
+        {% for i in astronauts %}
+            <div class="alert alert-secondary shadow-lg  mt-4">
+                <h3> {{i.fio}}</h3>
+                <p> Возраст: {{i.age}}</p>
+                <p> Количество полётов: {{i.number_of_flights}}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <div style="width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center">
+        <span style="font-size: 25px; background-color: #F3F5F6; padding: 0 10px;">
+            Экспедиции
+        </span>
+    </div>
+    <div class="container">
+        {% for i in expeditions %}
+            <div class="alert alert-secondary shadow-lg  mt-4">
+                <h3> Экспедиция: {{i.report}}</h3>
+                <p> Астронавт: {{i.astronautId}} </p>
+                <p> Время экспедиции: {{i.expedition_time}}</p>
+                <p> Планета: {{i.planetId}}</p>
+                <a href="{% url 'change' i.expeditionId %}" class="btn btn-outline-dark">Редактировать</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'Space/base.html' %}
+
+{% block title %}
+Добавление экспедиции
+{% endblock %}
+
+
+{% block content %}
+<form method="post" class="container text-light mt-4">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">Описание экспедиции</label>
+        {{ form.report }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Время экспедиции</label>
+        {{ form.expedition_time }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label ">Планета</label>
+        {{ form.planetId }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label ">Астронавт</label>
+        {{ form.astronautId }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</form>
+{% endblock %}
